@@ -32,7 +32,7 @@ function App() {
   }
 
   return (
-    <Router>
+    <Router basename="/Task-management-system">
       <div className="App">
         <Routes>
           <Route 

@@ -13,6 +13,7 @@ import {
   EyeIcon,
   DocumentTextIcon
 } from '@heroicons/react/24/outline';
+import { getApiUrl, API_ENDPOINTS } from '../../config/api';
 
 const Dashboard = ({ onLogout }) => {
   const [tasks, setTasks] = useState([]);
@@ -41,7 +42,7 @@ const Dashboard = ({ onLogout }) => {
   const fetchTasks = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:8000/api/tasks', {
+      const response = await fetch(getApiUrl(API_ENDPOINTS.TASKS), {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -103,7 +104,7 @@ const Dashboard = ({ onLogout }) => {
     setIsSubmitting(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:8000/api/tasks', {
+      const response = await fetch(getApiUrl(API_ENDPOINTS.TASKS), {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -137,7 +138,7 @@ const Dashboard = ({ onLogout }) => {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:8000/api/tasks/${editingTask.id}`, {
+      const response = await fetch(getApiUrl(API_ENDPOINTS.TASK(editingTask.id)), {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -159,15 +160,15 @@ const Dashboard = ({ onLogout }) => {
 
   const handleDeleteTask = async (taskId) => {
     if (window.confirm('Are you sure you want to delete this task?')) {
-      try {
-        const token = localStorage.getItem('token');
-        const response = await fetch(`http://localhost:8000/api/tasks/${taskId}`, {
-          method: 'DELETE',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
-        });
+          try {
+      const token = localStorage.getItem('token');
+      const response = await fetch(getApiUrl(API_ENDPOINTS.TASK(taskId)), {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
 
         const data = await response.json();
         if (data.success) {
@@ -260,12 +261,10 @@ const Dashboard = ({ onLogout }) => {
           </div>
         </div>
 
-        {/* Create Task Form */}
         {showCreateForm && (
           <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
             <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
               <div className="mt-3">
-                {/* Header */}
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center space-x-3">
                     <div className="flex-shrink-0">
@@ -290,7 +289,6 @@ const Dashboard = ({ onLogout }) => {
                   </button>
                 </div>
 
-                {/* Error Messages */}
                 {formErrors.general && (
                   <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
                     <div className="flex items-center">
@@ -301,7 +299,6 @@ const Dashboard = ({ onLogout }) => {
                 )}
 
                 <form onSubmit={handleCreateTask} className="space-y-6">
-                  {/* Title Field */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Task Title
@@ -328,7 +325,6 @@ const Dashboard = ({ onLogout }) => {
                     )}
                   </div>
 
-                  {/* Description Field */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Description (Optional)
@@ -358,7 +354,6 @@ const Dashboard = ({ onLogout }) => {
                     </p>
                   </div>
 
-                  {/* Deadline Field */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Deadline
@@ -392,7 +387,6 @@ const Dashboard = ({ onLogout }) => {
                     </p>
                   </div>
 
-                  {/* Status Field */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Status
@@ -403,17 +397,13 @@ const Dashboard = ({ onLogout }) => {
                         onChange={(e) => setFormData({...formData, status: e.target.value})}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
                       >
-                        <option value="pending" className="flex items-center">
-                          <ClockIcon className="h-4 w-4 mr-2" />
-                          Pending
-                        </option>
+                        <option value="pending">Pending</option>
                         <option value="in_progress">In Progress</option>
                         <option value="completed">Completed</option>
                       </select>
                     </div>
                   </div>
 
-                  {/* Action Buttons */}
                   <div className="flex space-x-3 pt-4">
                     <button
                       type="button"
@@ -450,12 +440,10 @@ const Dashboard = ({ onLogout }) => {
           </div>
         )}
 
-        {/* Task Details Modal */}
         {viewingTask && (
           <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
             <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
               <div className="mt-3">
-                {/* Header */}
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center space-x-3">
                     <div className="flex-shrink-0">
@@ -476,7 +464,6 @@ const Dashboard = ({ onLogout }) => {
                   </button>
                 </div>
 
-                {/* Task Content */}
                 <div className="space-y-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -520,7 +507,6 @@ const Dashboard = ({ onLogout }) => {
                   </div>
                 </div>
 
-                {/* Action Buttons */}
                 <div className="flex space-x-3 pt-6">
                   <button
                     type="button"

@@ -1,18 +1,18 @@
 # Task Management System
 
-A full-stack task management application built with Laravel 12 backend and React frontend, featuring username-based authentication, task descriptions, and modern UI design with comprehensive API integration.
+A full-stack task management application built with Laravel 12 backend and React frontend. Features username-based authentication, task descriptions, and modern UI design.
 
 ## 🚀 Features
 
-- **User Authentication**: Username-based registration and login with immediate state management
-- **Task Management**: Create, read, update, and delete tasks with rich descriptions
-- **Task Properties**: Title, description (up to 1000 characters), deadline, and status tracking
-- **Modern UI**: Beautiful modal-based forms, responsive design with Tailwind CSS
+- **User Authentication**: Username-based registration and login
+- **Task Management**: Create, read, update, and delete tasks
+- **Task Properties**: Title, description, deadline, and status tracking
+- **Modern UI**: Modal-based forms with responsive design
 - **Real-time Updates**: Instant task updates without page refresh
-- **Task Details View**: Full-screen modal to view complete task information
-- **Input Validation**: Client-side and server-side validation with error handling
-- **Date Constraints**: Tasks cannot be scheduled more than 1 year in advance
-- **API-First**: RESTful API backend for scalability and mobile app support
+- **Task Details View**: Full-screen modal for task information
+- **Input Validation**: Client-side and server-side validation
+- **Date Constraints**: Tasks limited to 1 year in advance
+- **API-First**: RESTful API backend for scalability
 
 ## 🛠️ Technology Stack
 
@@ -21,19 +21,19 @@ A full-stack task management application built with Laravel 12 backend and React
 - **SQLite** - Lightweight database for easy setup and deployment
 - **Laravel Sanctum** - API authentication and token management
 - **PHP 8.4.3** - Modern PHP with enhanced performance
-- **Eloquent ORM** - Database abstraction with automatic SQL injection protection
+- **Eloquent ORM** - Database abstraction layer
 
 ### Frontend
-- **React 19** - Latest React with concurrent features and hooks
+- **React 19** - Latest React with hooks
 - **Vite** - Fast build tool and development server
-- **Tailwind CSS 3.4.0** - Utility-first CSS framework for modern styling
-- **React Router DOM** - Client-side routing with protected routes
-- **Heroicons** - Beautiful SVG icons for enhanced UX
-- **State Management** - React hooks for authentication and form state
+- **Tailwind CSS 3.4.0** - Utility-first CSS framework
+- **React Router DOM** - Client-side routing
+- **Heroicons** - SVG icons
+- **State Management** - React hooks
 
 ### Development Tools
 - **ESLint** - Code linting and formatting
-- **PostCSS** - CSS processing with Tailwind
+- **PostCSS** - CSS processing
 - **Autoprefixer** - CSS vendor prefixing
 
 ## 📋 Prerequisites
@@ -100,30 +100,30 @@ The frontend will be available at `http://localhost:5173`
 
 ```
 Task-management-system/
-├── backend/                 # Laravel backend application
+├── backend/                 # Laravel backend
 │   ├── app/
 │   │   ├── Http/Controllers/
-│   │   │   ├── AuthController.php    # Authentication logic
-│   │   │   └── TaskController.php    # Task CRUD operations with validation
+│   │   │   ├── AuthController.php
+│   │   │   └── TaskController.php
 │   │   └── Models/
-│   │       ├── User.php              # User model with username authentication
-│   │       └── Task.php              # Task model with description field
+│   │       ├── User.php
+│   │       └── Task.php
 │   ├── database/
-│   │   └── migrations/               # Database migrations including description
+│   │   └── migrations/
 │   ├── routes/
-│   │   └── api.php                   # API routes with middleware
+│   │   └── api.php
 │   └── composer.json
-├── frontend/                # React frontend application
+├── frontend/                # React frontend
 │   ├── src/
 │   │   ├── components/
 │   │   │   ├── Auth/
-│   │   │   │   ├── Login.jsx         # Login component with state management
-│   │   │   │   └── Register.jsx      # Registration component
+│   │   │   │   ├── Login.jsx
+│   │   │   │   └── Register.jsx
 │   │   │   └── Dashboard/
-│   │   │       └── Dashboard.jsx     # Main dashboard with modals and forms
-│   │   ├── App.jsx                   # Main app with routing and auth state
-│   │   └── main.jsx                  # App entry point
-│   ├── tailwind.config.js            # Tailwind configuration
+│   │   │       └── Dashboard.jsx
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── tailwind.config.js
 │   └── package.json
 └── README.md
 ```
@@ -132,12 +132,9 @@ Task-management-system/
 
 ### Backend Configuration
 
-The backend uses SQLite by default. Key configuration files:
-
 - `.env` - Environment variables
 - `config/database.php` - Database configuration
 - `config/sanctum.php` - API authentication settings
-- `config/auth.php` - Authentication configuration
 
 ### Frontend Configuration
 

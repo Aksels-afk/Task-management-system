@@ -7,11 +7,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Task extends Model
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<string>
-     */
     protected $fillable = [
         'title',
         'description',
@@ -20,18 +15,10 @@ class Task extends Model
         'user_id',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'deadline' => 'datetime',
     ];
 
-    /**
-     * Get the user that owns the task.
-     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
