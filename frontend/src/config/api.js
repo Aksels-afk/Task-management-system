@@ -3,7 +3,7 @@ const config = {
     apiBaseUrl: 'http://localhost:8000/api'
   },
   production: {
-    apiBaseUrl: 'https://task-management-system-production-c061.up.railway.app/api'
+    apiBaseUrl: 'https://task-management-system-f5dm.onrender.com/api'
   }
 };
 
