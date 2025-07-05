@@ -23,7 +23,8 @@ return [
         'http://localhost:5173',
         'http://localhost:3000',
         'https://aksels-afk.github.io',
-        'https://*.github.io'
+        'https://*.github.io',
+        'https://aksels-afk.github.io/Task-management-system'
     ],
 
     'allowed_origins_patterns' => [],
