@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 
-const Login = () => {
+const Login = ({ setIsAuthenticated }) => {
   const [formData, setFormData] = useState({
     username: '',
     password: ''
@@ -38,6 +38,7 @@ const Login = () => {
       if (data.success) {
         localStorage.setItem('token', data.data.token);
         localStorage.setItem('user', JSON.stringify(data.data.user));
+        setIsAuthenticated(true);
         navigate('/dashboard');
       } else {
         setError(data.message || 'Login failed');

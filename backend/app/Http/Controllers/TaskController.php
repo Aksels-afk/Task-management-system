@@ -46,7 +46,8 @@ class TaskController extends Controller
         // Validate the request data
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
-            'deadline' => 'required|date|after:now',
+            'description' => 'nullable|string|max:1000',
+            'deadline' => 'required|date|after:now|before:+1 year',
             'status' => 'sometimes|in:pending,in_progress,completed',
         ]);
 
@@ -62,6 +63,7 @@ class TaskController extends Controller
         // Create the task
         $task = Auth::user()->tasks()->create([
             'title' => $request->title,
+            'description' => $request->description,
             'deadline' => $request->deadline,
             'status' => $request->status ?? 'pending',
         ]);
@@ -121,7 +123,8 @@ class TaskController extends Controller
         // Validate the request data
         $validator = Validator::make($request->all(), [
             'title' => 'sometimes|required|string|max:255',
-            'deadline' => 'sometimes|required|date',
+            'description' => 'sometimes|nullable|string|max:1000',
+            'deadline' => 'sometimes|required|date|after:now|before:+1 year',
             'status' => 'sometimes|in:pending,in_progress,completed',
         ]);
 
@@ -135,7 +138,7 @@ class TaskController extends Controller
         }
 
         // Update the task
-        $task->update($request->only(['title', 'deadline', 'status']));
+        $task->update($request->only(['title', 'description', 'deadline', 'status']));
 
         return response()->json([
             'success' => true,
